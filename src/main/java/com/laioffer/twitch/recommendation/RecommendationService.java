@@ -9,6 +9,7 @@ import com.laioffer.twitch.external.model.Stream;
 import com.laioffer.twitch.external.model.Video;
 import com.laioffer.twitch.favorite.FavoriteService;
 import com.laioffer.twitch.model.TypeGroupedItemList;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 
@@ -36,6 +37,7 @@ public class RecommendationService {
     }
 
 
+    @Cacheable("recommend_items")
     public TypeGroupedItemList recommendItems(UserEntity userEntity) {
         List<String> gameIds;
         Set<String> exclusions = new HashSet<>();
@@ -69,10 +71,11 @@ public class RecommendationService {
     }
 
 
+
     private List<ItemEntity> recommendStreams(List<String> gameIds, Set<String> exclusions) {
         List<Stream> streams = twitchService.getStreams(gameIds, PER_PAGE_ITEM_SIZE);
         List<ItemEntity> resultItems = new ArrayList<>();
-        for (Stream stream : streams) {
+        for (Stream stream: streams) {
             if (!exclusions.contains(stream.id())) {
                 resultItems.add(new ItemEntity(stream));
             }

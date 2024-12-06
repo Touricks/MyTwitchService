@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public record Stream(
-        @JsonProperty("id") String id,
+        String id,
         @JsonProperty("user_id") String userId,
         @JsonProperty("user_login") String userLogin,
         @JsonProperty("user_name") String userName,
