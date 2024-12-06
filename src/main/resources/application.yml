@@ -36,6 +36,9 @@ spring:
     init:
       mode: ${DATABASE_INIT:always}
       schema-locations: "classpath:database-init.sql"
+  cache:
+    caffeine:
+      spec: expireAfterWrite=1m
 logging:
   level:
     org.apache.coyote.http11.Http11InputBuffer: TRACE # Incoming http requests
