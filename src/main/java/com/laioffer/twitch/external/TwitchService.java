@@ -38,12 +38,9 @@ public class TwitchService {
         return twitchApiClient.getStreams(gameIds, first).data();
     }
 
-    public List<Video> getVideosById(List<String> id) {
-        return twitchApiClient.getVideos(null,id.size(),id).data();
-    }
 
     public List<Video> getVideos(String gameId, int first) {
-        return twitchApiClient.getVideos(gameId, first,null).data();
+        return twitchApiClient.getVideos(gameId, first).data();
     }
 
 
