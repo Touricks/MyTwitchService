@@ -30,7 +30,11 @@ public record ItemEntity(
         this(null, clip.id(), clip.title(), clip.url(), clip.thumbnailUrl(), clip.broadcasterName(), clip.gameId(), ItemType.CLIP);
     }
 
-    public ItemEntity(Stream stream) {
+    public ItemEntity(Stream stream, String url) {
+        this(null, stream.id(), stream.title(), url, stream.thumbnailUrl(), stream.userName(), stream.gameId(), ItemType.STREAM);
+    }
+
+    public ItemEntity(Stream stream){
         this(null, stream.id(), stream.title(), null, stream.thumbnailUrl(), stream.userName(), stream.gameId(), ItemType.STREAM);
     }
 }
