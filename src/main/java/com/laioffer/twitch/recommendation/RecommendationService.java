@@ -72,7 +72,7 @@ public class RecommendationService {
     private List<ItemEntity> recommendStreams(List<String> gameIds, Set<String> exclusions) {
         List<Stream> streams = twitchService.getStreams(gameIds, PER_PAGE_ITEM_SIZE);
         List<ItemEntity> resultItems = new ArrayList<>();
-        for (Stream stream: streams) {
+        for (Stream stream : streams) {
             if (!exclusions.contains(stream.id())) {
                 resultItems.add(new ItemEntity(stream));
             }
