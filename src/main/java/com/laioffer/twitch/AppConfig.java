@@ -1,6 +1,5 @@
 package com.laioffer.twitch;
 
-
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,38 +15,33 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
-
 import javax.sql.DataSource;
-
 
 @Configuration
 public class AppConfig {
-
-// Here we apply some new methods for SecurityFilterChain (update deprecated methods).
-// If exception occurs, reference Class20 - LogIn/LogOut
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+        return http
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers(HttpMethod.GET, "/", "/index.html", "/*.json", "/*.png", "/static/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/login", "/register", "/logout").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/recommendation", "/games", "/search").permitAll()
-                        .anyRequest().authenticated()
+                .authorizeHttpRequests(auth ->
+                        auth
+                                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                .requestMatchers(HttpMethod.GET, "/", "/index.html", "/*.json", "/*.png", "/static/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/login", "/register", "/logout").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/recommendation", "/game", "/search").permitAll()
+                                .anyRequest().authenticated()
                 )
-
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 )
-                .formLogin(login -> login
+                .formLogin(form -> form
                         .successHandler((req, res, auth) -> res.setStatus(HttpStatus.NO_CONTENT.value()))
                         .failureHandler(new SimpleUrlAuthenticationFailureHandler())
                 )
                 .logout(logout -> logout
                         .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.NO_CONTENT))
-                );
-        return http.build();
+                )
+                .build();
     }
 
 
@@ -61,6 +55,5 @@ public class AppConfig {
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
-
 
 }
