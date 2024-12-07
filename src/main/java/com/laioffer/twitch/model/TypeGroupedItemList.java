@@ -14,9 +14,9 @@ import java.util.List;
 
 
 public record TypeGroupedItemList(
-        @JsonProperty("stream_list") List<ItemEntity> streams,
-        @JsonProperty("video_list") List<ItemEntity> videos,
-        @JsonProperty("Clips_list") List<ItemEntity> clips
+        @JsonProperty("streams") List<ItemEntity> streams,
+        @JsonProperty("videos") List<ItemEntity> videos,
+        @JsonProperty("clips") List<ItemEntity> clips
 ) {
 
 
