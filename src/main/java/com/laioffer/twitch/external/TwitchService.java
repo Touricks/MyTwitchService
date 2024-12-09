@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -18,7 +19,7 @@ public class TwitchService {
 
 
     private final TwitchApiClient twitchApiClient;
-
+    private static final String DEFAULT_LANGUAGE = "en";
 
     public TwitchService(TwitchApiClient twitchApiClient) {
         this.twitchApiClient = twitchApiClient;
@@ -36,19 +37,49 @@ public class TwitchService {
         return twitchApiClient.getGames(name).data();
     }
 
-
     public List<Stream> getStreams(List<String> gameIds, int first) {
-        return twitchApiClient.getStreams(gameIds, first).data();
+        return twitchApiClient.getStreams(gameIds, first).data().stream()
+                .filter(stream -> DEFAULT_LANGUAGE.equals(stream.language()))
+                .filter(stream -> {
+                    String thumbnailUrl = stream.thumbnailUrl();
+                    return thumbnailUrl != null
+                            && !thumbnailUrl.isEmpty()
+                            && !thumbnailUrl.contains("404_processing")  // Filter out processing thumbnails
+                            && !thumbnailUrl.contains("404/404");        // Filter out 404 thumbnails
+                })
+                .collect(Collectors.toList());
     }
 
 
     public List<Video> getVideos(String gameId, int first) {
-        return twitchApiClient.getVideos(gameId, first).data();
+        int multiple = 3;
+        return twitchApiClient.getVideos(gameId, multiple*first).data().stream()
+                .filter(video -> DEFAULT_LANGUAGE.equals(video.language()))
+                .filter(video -> {
+                    String thumbnailUrl = video.thumbnailUrl();
+                    return thumbnailUrl != null
+                            && !thumbnailUrl.isEmpty()
+                            && !thumbnailUrl.contains("404_processing")  // Filter out processing thumbnails
+                            && !thumbnailUrl.contains("404/404");        // Filter out 404 thumbnails
+                })
+                .limit(first)
+                .collect(Collectors.toList());
     }
 
 
     public List<Clip> getClips(String gameId, int first) {
-        return twitchApiClient.getClips(gameId, first).data();
+        int multiple = 3;
+        return twitchApiClient.getClips(gameId, multiple*first).data().stream()
+                .filter(clip -> DEFAULT_LANGUAGE.equals(clip.language()))
+                .filter(clip -> {
+                    String thumbnailUrl = clip.thumbnailUrl();
+                    return thumbnailUrl != null
+                            && !thumbnailUrl.isEmpty()
+                            && !thumbnailUrl.contains("404_processing")  // Filter out processing thumbnails
+                            && !thumbnailUrl.contains("404/404");        // Filter out 404 thumbnails
+                })
+                .limit(first)
+                .collect(Collectors.toList());
     }
 
 
