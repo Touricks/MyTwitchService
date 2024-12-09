@@ -1,38 +1,34 @@
-# streamlit_app.py
 import streamlit as st
 
 # Page configuration
 st.set_page_config(
     page_title="Twitch Content Recommendation System",
     page_icon="🎮",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-# Hide default menu
-hide_menu = """
-<style>
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-</style>
-"""
-st.markdown(hide_menu, unsafe_allow_html=True)
+st.markdown("""
+    <style>
+        header[data-testid="stSidebarHeader"] {
+            display: none;
+        }
+        [data-testid="stSidebarNav"] {
+            background-image: none;
+            padding-top: 1.5rem;
+        }
+        [data-testid="stSidebarNav"]::before {
+            content: "Navigation";
+            margin-left: 20px;
+            margin-top: 20px;
+            font-size: 24px;
+            position: relative;
+            top: 0;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-# Custom navigation
-st.sidebar.title("Navigation")
-page = st.sidebar.radio(
-    "",  # Empty string removes the label above the radio buttons
-    ["Project Overview", "System Demo", "Code Walkthrough"]
-)
-
-# Import your page functions
-from pages.Project_Overview import project_overview
-from pages.System_Demo import system_demo
-from pages.Code_Walkthrough import code_walkthrough
-
-# Display selected page content
-if page == "Project Overview":
-    project_overview()
-elif page == "System Demo":
-    system_demo()
-elif page == "Code Walkthrough":
-    code_walkthrough()
+# Auto-redirect to Project Overview
+import time
+time.sleep(0.1)  # Small delay to ensure smooth transition
+st.switch_page("pages/Project_Overview.py")
