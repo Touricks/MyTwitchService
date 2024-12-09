@@ -1,28 +1,38 @@
+# streamlit_app.py
 import streamlit as st
-import requests
-from PIL import Image
-# Configure page settings
-# noinspection PyInterpreter
+
+# Page configuration
 st.set_page_config(
     page_title="Twitch Content Recommendation System",
     page_icon="🎮",
     layout="wide"
 )
 
-# Backend API URL
-BACKEND_URL = "http://localhost:8080"  # Replace with your actual backend URL
+# Hide default menu
+hide_menu = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+"""
+st.markdown(hide_menu, unsafe_allow_html=True)
 
-def load_data(endpoint):
-    try:
-        response = requests.get(f"{BACKEND_URL}/{endpoint}")
-        return response.json()
-    except Exception as e:
-        st.error(f"Error loading data: {str(e)}")
-        return None
+# Custom navigation
+st.sidebar.title("Navigation")
+page = st.sidebar.radio(
+    "",  # Empty string removes the label above the radio buttons
+    ["Project Overview", "System Demo", "Code Walkthrough"]
+)
 
-def main():
-    # Sidebar navigation
-    st.sidebar.title("Navigation")
+# Import your page functions
+from pages.Project_Overview import project_overview
+from pages.System_Demo import system_demo
+from pages.Code_Walkthrough import code_walkthrough
 
-if __name__ == "__main__":
-    main()
+# Display selected page content
+if page == "Project Overview":
+    project_overview()
+elif page == "System Demo":
+    system_demo()
+elif page == "Code Walkthrough":
+    code_walkthrough()
