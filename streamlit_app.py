@@ -1,9 +1,6 @@
 import streamlit as st
 import requests
-import pandas as pd
-import plotly.express as px
 from PIL import Image
-import json
 
 # Configure page settings
 st.set_page_config(
@@ -13,7 +10,7 @@ st.set_page_config(
 )
 
 # Backend API URL
-BACKEND_URL = "http://localhost:8080"  # Replace with your actual backend URL
+BACKEND_URL = "http://your-aws-backend-url:8080"  # Replace with your actual backend URL
 
 def load_data(endpoint):
     try:
@@ -24,21 +21,19 @@ def load_data(endpoint):
         return None
 
 def main():
-    # Sidebar
+    # Sidebar navigation
     st.sidebar.title("Navigation")
     page = st.sidebar.radio(
         "Select a Page",
-        ["Project Overview", "Game Recommendations", "Stream Analysis", "User Statistics"]
+        ["Project Overview", "System Demo", "Code Walkthrough"]
     )
 
     if page == "Project Overview":
         show_project_overview()
-    elif page == "Game Recommendations":
-        show_game_recommendations()
-    elif page == "Stream Analysis":
-        show_stream_analysis()
-    elif page == "User Statistics":
-        show_user_statistics()
+    elif page == "System Demo":
+        show_system_demo()
+    elif page == "Code Walkthrough":
+        show_code_walkthrough()
 
 def show_project_overview():
     st.title("🎮 Twitch Content Recommendation System")
@@ -57,10 +52,9 @@ def show_project_overview():
     - Real-time Twitch data integration
     """)
 
-    # Architecture Overview
+    # Architecture Image
     st.subheader("System Architecture")
-    # You can add an architecture diagram here
-    # st.image("architecture.png")
+    st.image("path_to_architecture_diagram.png", caption="System Architecture Diagram")
 
     # Technology Stack
     st.subheader("Technology Stack")
@@ -78,87 +72,78 @@ def show_project_overview():
         st.markdown("**Deployment**")
         st.markdown("- AWS EC2\n- AWS RDS\n- Docker")
 
-def show_game_recommendations():
-    st.title("Game Recommendations")
+def show_system_demo():
+    st.title("System Demo")
 
-    # Language Filter
-    language = st.selectbox(
-        "Select Language",
-        ["en", "es", "fr", "de", "ja", "ko", "zh"]
-    )
+    # Demo Video
+    st.subheader("Watch the Demo")
+    st.video("path_to_demo_video.mp4")
 
-    # Mock data - replace with actual API call
-    games_data = load_data(f"games?language={language}")
+    # Feature Screenshots
+    st.subheader("Key Features in Action")
 
-    if games_data:
-        # Display games in a grid
-        cols = st.columns(4)
-        for idx, game in enumerate(games_data):
-            with cols[idx % 4]:
-                st.image(game.get('thumbnailUrl', 'placeholder.png'), use_column_width=True)
-                st.write(game.get('title', 'Unknown Game'))
-                st.write(f"👥 {game.get('viewerCount', 0)} viewers")
+    # User Interface
+    st.markdown("### User Interface")
+    st.image("path_to_ui_screenshot.png", caption="Main User Interface")
 
-def show_stream_analysis():
-    st.title("Stream Analysis")
+    # Recommendation System
+    st.markdown("### Recommendation System")
+    st.image("path_to_recommendations_screenshot.png", caption="Game Recommendations")
 
-    # Date range selector
-    col1, col2 = st.columns(2)
-    with col1:
-        start_date = st.date_input("Start Date")
-    with col2:
-        end_date = st.date_input("End Date")
+    # Language Filtering
+    st.markdown("### Language Filtering")
+    st.image("path_to_language_screenshot.png", caption="Language Selection Interface")
 
-    # Mock data - replace with actual API call
-    stream_data = load_data(f"streams/analysis?start={start_date}&end={end_date}")
+def show_code_walkthrough():
+    st.title("Code Walkthrough")
 
-    if stream_data:
-        # Create viewer distribution chart
-        fig = px.bar(
-            stream_data,
-            x='timeSlot',
-            y='viewerCount',
-            title='Viewer Distribution Over Time'
-        )
-        st.plotly_chart(fig)
+    # Backend Code Examples
+    st.subheader("Backend Implementation")
 
-        # Display top streams
-        st.subheader("Top Streams")
-        df = pd.DataFrame(stream_data['topStreams'])
-        st.dataframe(df)
+    # Recommendation Service
+    st.markdown("### Recommendation Service")
+    recommendation_code = '''
+    @Service
+    public class RecommendationService {
+        public List<Video> getVideos(String gameId, int first) {
+            return twitchApiClient.getVideos(gameId, first).data().stream()
+                    .filter(video -> DEFAULT_LANGUAGE.equals(video.language()))
+                    .filter(video -> {
+                        String thumbnailUrl = video.thumbnailUrl();
+                        return thumbnailUrl != null 
+                            && !thumbnailUrl.isEmpty()
+                            && !thumbnailUrl.contains("404_processing");
+                    })
+                    .limit(first)
+                    .collect(Collectors.toList());
+        }
+    }
+    '''
+    st.code(recommendation_code, language='java')
 
-def show_user_statistics():
-    st.title("User Statistics")
+    # Frontend Code Examples
+    st.subheader("Frontend Implementation")
 
-    # Mock user stats - replace with actual API call
-    user_stats = load_data("users/statistics")
-
-    if user_stats:
-        # Display key metrics
-        col1, col2, col3, col4 = st.columns(4)
-
-        with col1:
-            st.metric("Total Users", user_stats.get('totalUsers', 0))
-
-        with col2:
-            st.metric("Active Users", user_stats.get('activeUsers', 0))
-
-        with col3:
-            st.metric("Total Favorites", user_stats.get('totalFavorites', 0))
-
-        with col4:
-            st.metric("Active Sessions", user_stats.get('activeSessions', 0))
-
-        # User engagement chart
-        engagement_data = user_stats.get('engagementData', [])
-        if engagement_data:
-            fig = px.line(
-                engagement_data,
-                x='date',
-                y='engagement',
-                title='User Engagement Over Time'
-            )
-            st.plotly_chart(fig)
+    # React Component
+    st.markdown("### Video Card Component")
+    frontend_code = '''
+    const VideoCard = ({ video }) => {
+        const thumbnailUrl = processThumbnailUrl(video.thumbnail_url);
+        
+        return (
+            <div className="video-card">
+                {thumbnailUrl && !thumbnailUrl.includes('404') ? (
+                    <img src={thumbnailUrl} alt={video.title} />
+                ) : (
+                    <div className="thumbnail-placeholder">
+                        <span>{video.title}</span>
+                    </div>
+                )}
+            </div>
+        );
+    };
+    '''
+    st.code(frontend_code, language='javascript')
 
 if __name__ == "__main__":
     main()
