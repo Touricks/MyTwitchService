@@ -1,8 +1,8 @@
 import streamlit as st
 import requests
 from PIL import Image
-
 # Configure page settings
+# noinspection PyInterpreter
 st.set_page_config(
     page_title="Twitch Content Recommendation System",
     page_icon="🎮",
@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 # Backend API URL
-BACKEND_URL = "http://your-aws-backend-url:8080"  # Replace with your actual backend URL
+BACKEND_URL = "http://localhost:8080"  # Replace with your actual backend URL
 
 def load_data(endpoint):
     try:
