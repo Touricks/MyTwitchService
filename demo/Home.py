@@ -8,7 +8,7 @@ st.set_page_config(
 )
 
 # Main page content
-st.title("Personalized Video Recommendation System Proposal")
+st.title("Personalized Video Recommendation System")
 # Demo Video
 st.subheader("Please Watch the Demo video")
 st.video("path_to_demo_video.mp4")
