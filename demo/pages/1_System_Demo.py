@@ -2,10 +2,6 @@ import streamlit as st
 
 st.title("System Demo")
 
-# Demo Video
-st.subheader("Watch the Demo")
-st.video("path_to_demo_video.mp4")
-
 # Feature Screenshots
 st.subheader("Key Features in Action")
 
