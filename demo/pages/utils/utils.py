@@ -39,4 +39,4 @@ def set_background(image_file):
     }}
     </style>
     '''
-    st.write(page_bg_img, unsafe_allow_html=True)
+    st.code(page_bg_img, unsafe_allow_html=True)
