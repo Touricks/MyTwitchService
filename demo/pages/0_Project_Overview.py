@@ -11,14 +11,13 @@ st.markdown("""
     
     ### Key Features
     - Personalized game recommendations
-    - Language-based content filtering
     - User preference tracking
     - Real-time Twitch data integration
     """)
 
 # Architecture Image
 st.subheader("System Architecture")
-st.image("path_to_architecture_diagram.png", caption="System Architecture Diagram")
+st.image("asset/System Architecture.png", caption="System Architecture Diagram")
 
 # Technology Stack
 st.subheader("Technology Stack")
@@ -26,7 +25,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("**Frontend**")
-    st.markdown("- React\n- Material UI\n- Axios")
+    st.markdown("- React - ")
 
 with col2:
     st.markdown("**Backend**")
@@ -34,4 +33,4 @@ with col2:
 
 with col3:
     st.markdown("**Deployment**")
-    st.markdown("- AWS EC2\n- AWS RDS\n- Docker")
+    st.markdown("- AWS EC2\n- Docker\n")
