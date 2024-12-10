@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.utils import set_background
+from ..utils import set_background
 
 st.title("🎮 Twitch Content Recommendation System")
 # Project Description
