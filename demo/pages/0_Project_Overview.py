@@ -1,4 +1,7 @@
 import streamlit as st
+import os
+import base64
+
 def set_background(image_file):
     """
     A function to unpack an image from root folder and set as bg.
