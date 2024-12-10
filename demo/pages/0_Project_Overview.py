@@ -43,7 +43,7 @@ def set_background(image_file):
     }}
     </style>
     '''
-    st.markdown(page_bg_img, unsafe_allow_html=True)
+    st.write(page_bg_img, unsafe_allow_html=True)
 
 
 set_background("demo/asset/background_picture.png")
