@@ -17,7 +17,7 @@ st.markdown("""
 
 # Architecture Image
 st.subheader("System Architecture")
-st.image("asset/System Architecture.png", caption="System Architecture Diagram")
+st.image("System Architecture.png", caption="System Architecture Diagram")
 
 # Technology Stack
 st.subheader("Technology Stack")
