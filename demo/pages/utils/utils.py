@@ -1,3 +1,6 @@
+import streamlit as st
+import os
+import base64
 def set_background(image_file):
     with open(image_file, "rb") as f:
         img_data = f.read()

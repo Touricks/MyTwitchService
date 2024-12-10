@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import base64
-from utils import set_background
+from utils.utils import set_background
 set_background("demo/asset/background_picture.png")
 
 st.title("Code Walkthrough")

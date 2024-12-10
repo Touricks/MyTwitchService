@@ -1,6 +1,5 @@
 import streamlit as st
-from utils import set_background
-
+from utils.utils import set_background
 st.set_page_config(
     page_title="Video Recommendation System",
     page_icon="🎮",
