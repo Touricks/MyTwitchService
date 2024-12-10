@@ -15,14 +15,9 @@ st.markdown("""
     - User preference tracking
     - Real-time Twitch data integration
     """)
-current_path = os.getcwd()
-attempted_path = os.path.join(current_path, "asset/System_Architecture.png")
-st.write("Current working directory:", current_path)
-st.write("Attempting to access image at:", attempted_path)
-
 # Architecture Image
 st.subheader("System Architecture")
-st.image("asset/System_Architecture.png", caption="System Architecture Diagram")
+st.image("demo/asset/System_Architecture.png", caption="System Architecture Diagram")
 
 # Technology Stack
 st.subheader("Technology Stack")
