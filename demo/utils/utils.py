@@ -1,4 +1,3 @@
-# utils.py
 import streamlit as st
 import base64
 import os
