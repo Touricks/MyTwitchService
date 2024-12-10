@@ -14,23 +14,23 @@ def set_background(image_file):
 
     page_bg_img = f'''
     <style>
-    .stApp {{
-        background-image: url("data:image/{file_extension};base64,{bin_str}");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+        .stApp {{
+            background-image: url("data:image/{file_extension};base64,{bin_str}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }}
-    .stApp::before {{
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        background: rgba(255, 255, 255, 0.2);
-        z-index: -1;
-    }}
+        
+        .stApp::before {{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }}
     
     .stMarkdown {{
         color: black;
