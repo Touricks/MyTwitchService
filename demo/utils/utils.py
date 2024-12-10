@@ -34,7 +34,8 @@ def set_background(image_file):
     .stMarkdown {{
         color: black;
         background-color: rgba(255, 255, 255, 0.7);
-        padding: 20px;
+        padding: 1px;
+        margin:10px;
         border-radius: 10px;
     }}
     </style>
