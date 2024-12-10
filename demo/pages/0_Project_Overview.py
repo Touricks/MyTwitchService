@@ -14,20 +14,22 @@ def set_background(image_file):
 
     page_bg_img = f'''
     <style>
-    
-    .stApp::before {{
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+    .stApp {{
         background-image: url("data:image/{file_extension};base64,{bin_str}");
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        filter: contrast(90%) brightness(90%);  /* Reduce contrast and brightness */
-        opacity: 0.8;  /* Make image more faded */
+        }}
+    .stApp::before {{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        filter: contrast(90%) brightness(90%);  
+        opacity: 0.8;  
         z-index: -1;
     }}
     
