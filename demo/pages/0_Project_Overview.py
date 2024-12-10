@@ -28,8 +28,7 @@ def set_background(image_file):
         width: 100%;
         height: 100%;
         pointer-events: none;
-        filter: contrast(90%) brightness(90%);  
-        opacity: 0.8;  
+        background: rgba(255, 255, 255, 0.2);
         z-index: -1;
     }}
     
@@ -42,52 +41,31 @@ def set_background(image_file):
         z-index: 1;
         font-size: 16px;
     }}
-    
-    .stsubheader{{
-        color: black;
-        background-color: rgba(255, 255, 255, 0.7);
-        padding: 20px;
-        border-radius: 10px;
-        position: relative;
-        z-index: 1;
-        font-size: 24px;
-    }}
-    
-    .sttitle{{
-        color: black;
-        background-color: rgba(255, 255, 255, 0.7);
-        padding: 20px;
-        border-radius: 10px;
-        position: relative;
-        z-index: 1;
-        font-size: 32px;
-    }}
-    
     </style>
     '''
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
-st.title("🎮 Twitch Content Recommendation System")
 set_background("demo/asset/background_picture.png")
 
-# Rest of your code remains the same...
+st.title("🎮 Twitch Content Recommendation System")
+
 st.markdown("""
     ## About the Project
     This recommendation system helps users discover Twitch content based on their preferences.
-    The system analyzes user behavior and provides personalized recommendations for games,
-    streams, and videos.
+    The system analyzes user behavior and provides personalized recommendations for games, streams, and videos.""")
     
-    ### Key Features
+st.markdown("""
+    ## Key Features
     - Personalized game recommendations
     - User preference tracking
     - Real-time Twitch data integration
     """)
 
-st.subheader("System Architecture")
+st.markdown("## System Architecture")
 st.image("demo/asset/System_Architecture.png", caption="System Architecture Diagram")
 
-st.subheader("Technology Stack")
+st.markdown("## Technology Stack")
 col1, col2, col3 = st.columns(3)
 
 with col1:
