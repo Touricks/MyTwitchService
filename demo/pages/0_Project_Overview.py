@@ -23,13 +23,10 @@ st.markdown("## Technology Stack")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("**Frontend**")
-    st.markdown("- React ")
+    st.markdown("**Frontend**\n- React")
 
 with col2:
-    st.markdown("**Backend**")
-    st.markdown("- Spring Boot\n- MySQL\n- Twitch API")
+    st.markdown("**Backend**\n- Java\n- Spring Boot\n- MySQL\n- Twitch API")
 
 with col3:
-    st.markdown("**Deployment**")
-    st.markdown("- AWS EC2\n- Docker\n - AppRunner")
+    st.markdown("**Deployment**\n - AWS EC2\n- Docker\n - AppRunner" )
