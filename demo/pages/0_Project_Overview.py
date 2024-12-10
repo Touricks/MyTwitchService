@@ -1,5 +1,5 @@
 import streamlit as st
-from ..utils import set_background
+from demo.utils.utils import set_background
 st.title("🎮 Twitch Content Recommendation System")
 # Project Description
 set_background("demo/asset/background_picture.png")
