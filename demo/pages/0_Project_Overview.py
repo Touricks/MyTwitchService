@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 st.title("🎮 Twitch Content Recommendation System")
 
@@ -14,6 +15,10 @@ st.markdown("""
     - User preference tracking
     - Real-time Twitch data integration
     """)
+current_path = os.getcwd()
+attempted_path = os.path.join(current_path, "asset/System_Architecture.png")
+st.write("Current working directory:", current_path)
+st.write("Attempting to access image at:", attempted_path)
 
 # Architecture Image
 st.subheader("System Architecture")
