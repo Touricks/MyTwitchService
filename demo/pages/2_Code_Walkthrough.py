@@ -7,27 +7,27 @@ st.header("Backend Implementation")
 
 # Recommendation Service
 st.subheader("Twitch Service and Twitch API Client")
-st.image("demo/asset/2_1.png", use_column_width=True)
+st.image("demo/asset/2_1.png")
 st.markdown("""
     Twitch service are developed to interact with the Twitch API client, with some filtering features.
     The Twitch API client is used to send requests to the Twitch API and retrieve data.""")
 
 st.subheader("Favorite Service and Favorite Controller")
-st.image("demo/asset/2_2.png", use_column_width=True)
+st.image("demo/asset/2_2.png")
 st.markdown("""
     FavoriteService class handles the core business logic including setting/unsetting favorites, checking for duplicates, and retrieving favorite items, while caching the results for better performance.
     FavoriteController class serves as the REST API layer, exposing endpoints for favoriting/unfavoriting videos and getting a user's favorite items.
     One of Cache libraries based on SpringBoot, Caffeine, is used to cache the favorite results, to improve the performance when user requests the same favorite items.""")
 
 st.subheader("User Service and User Controller")
-st.image("demo/asset/2_3.png", use_column_width=True)
+st.image("demo/asset/2_3.png")
 st.markdown("""
     UserService class handles the core business logic including user registration, login, and retrieval of user information
     UserDetailsManager are used to manage user account details and authentication, PasswordEncoder are used to securely hash user passwords before storage.
     UserController class serves as the RESTAPI layer, exposing endpoints for user registration, login, and retrieval of user information.""")
 
 st.subheader("Recommendation Service and Recommendation Controller")
-st.image("demo/asset/2_4.png", use_column_width=True)
+st.image("demo/asset/2_4.png")
 st.markdown("""
     Recommendation Service and Controller provide personalized content recommendations in a Twitch-like platform, using cached game IDs from user favorites or top games.
     Specifically, Recommendation Service processes and groups streams, clips, and videos while excluding previously viewed content, handling pagination and staying within game seed limit""")
