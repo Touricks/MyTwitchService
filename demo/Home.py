@@ -9,5 +9,9 @@ st.set_page_config(
 st.title("Personalized Video Recommendation System")
 set_background("demo/asset/background_picture.png")
 # Demo Video
-st.subheader("Please Watch the Demo video")
+st.subheader("Click the button below to view the System in demo video")
+
+st.markdown("[Entry](https://hsnim2dpva.us-east-1.awsapprunner.com )")
+
+st.subheader("Demo video")
 st.video("path_to_demo_video.mp4")

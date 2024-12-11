@@ -37,6 +37,7 @@ def set_background(image_file):
         padding: 1px 3px 1.5px 3px;
         margin:10px;
         border-radius: 10px;
+        font-size: 1.2em;
     }}
     </style>
     '''
