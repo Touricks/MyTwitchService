@@ -24,7 +24,7 @@ with col1:
     st.markdown("**Frontend**\n- React")
 
 with col2:
-    st.markdown("**Backend**\n- Java\n- Spring Boot\n- MySQL\n- Caffeine\n- Mockito\n- Twitch API")
+    st.markdown("**Backend**\n- Spring Boot\n- MySQL\n- Caffeine\n- Mockito")
 
 with col3:
     st.markdown("**Deployment**\n - Docker\n- AWS RDS\n - AWS AppRunner" )
