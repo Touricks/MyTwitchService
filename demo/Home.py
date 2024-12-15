@@ -14,4 +14,4 @@ st.subheader("Click the button below to view the System in demo video")
 st.markdown("[Entry](https://hsnim2dpva.us-east-1.awsapprunner.com )")
 
 st.subheader("Demo video")
-st.video("path_to_demo_video.mp4")
+st.video("demo_video.mp4")

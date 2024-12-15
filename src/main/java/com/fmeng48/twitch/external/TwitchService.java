@@ -52,7 +52,7 @@ public class TwitchService {
 
 
     public List<Video> getVideos(String gameId, int first) {
-        int multiple = 3;
+        int multiple = 10;
         return twitchApiClient.getVideos(gameId, multiple*first).data().stream()
                 .filter(video -> DEFAULT_LANGUAGE.equals(video.language()))
                 .filter(video -> {
@@ -75,8 +75,8 @@ public class TwitchService {
                     String thumbnailUrl = clip.thumbnailUrl();
                     return thumbnailUrl != null
                             && !thumbnailUrl.isEmpty()
-                            && !thumbnailUrl.contains("404_processing")  // Filter out processing thumbnails
-                            && !thumbnailUrl.contains("404/404");        // Filter out 404 thumbnails
+                            && !thumbnailUrl.contains("404_processing")
+                            && !thumbnailUrl.contains("404/404");
                 })
                 .limit(first)
                 .collect(Collectors.toList());
