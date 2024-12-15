@@ -59,8 +59,8 @@ public class TwitchService {
                     String thumbnailUrl = video.thumbnailUrl();
                     return thumbnailUrl != null
                             && !thumbnailUrl.isEmpty()
-                            && !thumbnailUrl.contains("404_processing")  // Filter out processing thumbnails
-                            && !thumbnailUrl.contains("404/404");        // Filter out 404 thumbnails
+                            && !thumbnailUrl.contains("404_processing")
+                            && !thumbnailUrl.contains("404/404");
                 })
                 .limit(first)
                 .collect(Collectors.toList());
