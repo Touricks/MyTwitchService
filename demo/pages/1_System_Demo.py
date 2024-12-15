@@ -3,17 +3,21 @@ from utils.utils import set_background
 set_background("demo/asset/background_picture.png")
 
 st.title("System Demo")
-# Feature Screenshots
-st.subheader("Key Features in Action")
+st.header("Key Features in Action")
 
 # User Interface
-st.markdown("### User Interface")
-st.image("path_to_ui_screenshot.png", caption="Main User Interface")
+st.subheader("User Interface")
+st.image("demo/asset/1_0.png")
 
+st.subheader("Register & Login & Logout")
+st.image("demo/asset/1_1.png")
+
+st.subheader("Favorite/ Unfavorite Game Videos")
+st.image("demo/asset/1_2.png")
+
+st.subheader("Get Recommendations based on User Preferences")
+st.image("demo/asset/1_3.png", caption = "Application provide recommendations based on user preferences")
 # Recommendation System
-st.markdown("### Recommendation System")
-st.image("path_to_recommendations_screenshot.png", caption="Game Recommendations")
+st.header("Want to Try?")
+st.markdown("[Click here to have a try!](https://hsnim2dpva.us-east-1.awsapprunner.com )")
 
-# Language Filtering
-st.markdown("### Language Filtering")
-st.image("path_to_language_screenshot.png", caption="Language Selection Interface")

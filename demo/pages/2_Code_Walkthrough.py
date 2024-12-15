@@ -3,50 +3,27 @@ from utils.utils import set_background
 set_background("demo/asset/background_picture.png")
 
 st.title("Code Walkthrough")
-# Backend Code Examples
-st.subheader("Backend Implementation")
+st.header("Backend Implementation")
 
 # Recommendation Service
-st.markdown("### Recommendation Service")
-recommendation_code = '''
-    @Service
-    public class RecommendationService {
-        public List<Video> getVideos(String gameId, int first) {
-            return twitchApiClient.getVideos(gameId, first).data().stream()
-                    .filter(video -> DEFAULT_LANGUAGE.equals(video.language()))
-                    .filter(video -> {
-                        String thumbnailUrl = video.thumbnailUrl();
-                        return thumbnailUrl != null 
-                            && !thumbnailUrl.isEmpty()
-                            && !thumbnailUrl.contains("404_processing");
-                    })
-                    .limit(first)
-                    .collect(Collectors.toList());
-        }
-    }
-    '''
-st.code(recommendation_code, language='java')
+st.subheader("Twitch Service and Twitch API Client")
+st.markdown("""
+    Twitch service are developed to interact with the Twitch API client, with some filtering features.
+    The Twitch API client is used to send requests to the Twitch API and retrieve data.""")
 
-# Frontend Code Examples
-st.subheader("Frontend Implementation")
+st.subheader("Favorite Service and Favorite Controller")
+st.markdown("""
+    FavoriteService class handles the core business logic including setting/unsetting favorites, checking for duplicates, and retrieving favorite items, while caching the results for better performance.
+    FavoriteController class serves as the REST API layer, exposing endpoints for favoriting/unfavoriting videos and getting a user's favorite items.
+    One of Cache libraries based on SpringBoot, Caffeine, is used to cache the favorite results, to improve the performance when user requests the same favorite items.""")
 
-# React Component
-st.markdown("### Video Card Component")
-frontend_code = '''
-    const VideoCard = ({ video }) => {
-        const thumbnailUrl = processThumbnailUrl(video.thumbnail_url);
-        
-        return (
-            <div className="video-card">
-                {thumbnailUrl && !thumbnailUrl.includes('404') ? (
-                    <img src={thumbnailUrl} alt={video.title} />
-                ) : (
-                    <div className="thumbnail-placeholder">
-                        <span>{video.title}</span>
-                    </div>
-                )}
-            </div>
-        );
-    };
-    '''
-st.code(frontend_code, language='javascript')
+st.subheader("User Service and User Controller")
+st.markdown("""
+    UserService class handles the core business logic including user registration, login, and retrieval of user information
+    UserDetailsManager are used to manage user account details and authentication, PasswordEncoder are used to securely hash user passwords before storage.
+    UserController class serves as the RESTAPI layer, exposing endpoints for user registration, login, and retrieval of user information.""")
+
+st.subheader("Recommendation Service and Recommendation Controller")
+st.markdown("""
+    Recommendation Service and Controller provide personalized content recommendations in a Twitch-like platform, using cached game IDs from user favorites or top games.
+    Specifically, Recommendation Service processes and groups streams, clips, and videos while excluding previously viewed content, handling pagination and staying within game seed limit""")
